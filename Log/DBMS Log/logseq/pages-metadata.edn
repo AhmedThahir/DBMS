@@ -7,9 +7,6 @@
  {:block/name "anurag",
   :block/created-at 1649427199426,
   :block/updated-at 1649427199426}
- {:block/name "apr 10th, 2022",
-  :block/created-at 1649582141518,
-  :block/updated-at 1649586679446}
  {:block/name "apr 11th, 2022",
   :block/created-at 1649697236802,
   :block/updated-at 1649698506824}
@@ -24,7 +21,7 @@
   :block/updated-at 1649846586251}
  {:block/name "attributes",
   :block/created-at 1650017776712,
-  :block/updated-at 1650017789471}
+  :block/updated-at 1650018409469}
  {:block/name "b",
   :block/created-at 1649426245127,
   :block/updated-at 1649426245127}
@@ -65,20 +62,20 @@
   :block/created-at 1649426245127,
   :block/updated-at 1649426245127}
  {:block/name "normalization",
-  :block/created-at 1649586679445,
-  :block/updated-at 1649698460877}
+  :block/created-at 1650018530791,
+  :block/updated-at 1650018530791}
  {:block/name "now",
   :block/created-at 1649426245128,
   :block/updated-at 1649426245128}
  {:block/name "possible questions",
   :block/created-at 1649838688099,
   :block/updated-at 1649846616125}
+ {:block/name "redesign",
+  :block/created-at 1649697457846,
+  :block/updated-at 1649739269097}
  {:block/name "roles",
   :block/created-at 1649839103331,
   :block/updated-at 1649839219490}
- {:block/name "tables",
-  :block/created-at 1649697457846,
-  :block/updated-at 1649739269097}
  {:block/name "thahir",
   :block/created-at 1649427205151,
   :block/updated-at 1649427205151}

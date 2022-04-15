@@ -35,9 +35,11 @@ img, video, iframe
 
 .ls-block h1 { /* for the text */
 	color: hsl(0, 0%, 95%) !important;
+  	padding-left: 1ex;
 }
 
-.ls-block:nth-of-type(n+1) h1 {
+.ls-block:nth-of-type(n+1) h1
+{
 	background: rgb(121, 62, 62);
 }
 
