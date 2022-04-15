@@ -1,0 +1,55 @@
+- [[Thahir]]
+- Example for [[Anmol]]
+	- ID -> DOB -> Age -> Eligibility to Vote
+	- ID -> Name
+	-
+- Before Normalization
+	- S. No.
+	- ID
+	- DOB
+	- YOB
+	- Name Year
+	- F Name
+	- L Name
+	- City
+	- Company
+	- Email
+	- Mob 1
+	- Mob 2
+	- Ph UAE
+	- Ph KPM
+	- Door #
+	- Street
+	- Industry
+	- Subs
+	- Till
+	- Dep Name
+	- Dep Gender
+	- Dep Relation
+- After
+  collapsed:: true
+	- DONE ID
+	- DONE Name
+		- Initial
+		- FirstName
+		- MiddleName
+		- LastName
+	- DONE DOB
+	- DONE City
+	- DONE Company
+	- DONE Email
+	- DONE Phone UAE
+	- DONE Phone KPM
+	- DONE Door #
+	- DONE Street
+	- DONE Industry
+	- DONE Subs
+	- DONE Dependent Name
+		- Initial
+		- FirstName
+		- MiddleName
+		- Last Name
+	- DONE Dependent Gender
+	- DONE Dependent Relation
+	-
+	-

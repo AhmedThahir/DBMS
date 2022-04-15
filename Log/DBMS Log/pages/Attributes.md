@@ -1,0 +1,84 @@
+- admin
+	- id_admin
+	- username
+	- password
+- apply_job_post
+	- id_apply
+	- id_jobpost
+	- id_company
+	- id_user
+	- status
+- cities
+	- id
+	- name
+	- state_id
+- company
+	- id_company
+	- name
+	- companyname
+	- country
+	- state
+	- city
+	- contactno
+	- website
+	- email
+	- password
+	- aboutme
+	- logo
+	- createdat
+	- active
+- countries
+	- id
+	- sortname
+	- name
+	- phonecode
+- job_post
+	- id_jobpost
+	- id_company
+	- jobtitle
+	- descripiton
+	- minimumsalary
+	- maximumsalary
+	- experience
+	- qualification
+	- createdat
+- mailbox
+	- id_mailbox
+	- id_fromuser
+	- fromuser
+	- id_touser
+	- subject
+	- message
+	- createdat
+- reply_mailbox
+	- id_reply
+	- id_mailbox
+	- id_user
+	- usertype
+	- message
+	- createdAt
+- states
+	- id
+	- name
+	- country_id
+- users
+	- id_user
+	- firstname
+	- lastname
+	- email
+	- password
+	- address
+	- city
+	- state
+	- contactno
+	- qualification
+	- stream
+	- passingyear
+	- dob
+	- age
+	- designation
+	- resume
+	- hash
+	- active
+	- aboutme
+	- skills
