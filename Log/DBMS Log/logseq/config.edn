@@ -92,7 +92,7 @@
  ;;  :editor/left            ["ctrl+h" "left"]
  ;;  :editor/right           ["ctrl+l" "right"]}
 
- :shortcuts {:editor/collapse-block-children ["shift+mod+up" "shift+mod+u"], :editor/expand-block-children ["shift+mod+down" "shift+mod+e"], :editor/select-all-blocks "mod+a", :editor/zoom-out "mod+r", :go/search-in-page "mod+f", :go/search "mod+p", :editor/move-block-up ["mod+home" "mod+up"], :go/home "mod+s", :ui/toggle-left-sidebar "mod+d", :editor/move-block-down ["mod+end" "mod+down"], :editor/open-edit "e", :editor/zoom-in "mod+t"}
+ :shortcuts {:editor/collapse-block-children ["shift+mod+up" "shift+mod+u"], :editor/expand-block-children ["shift+mod+down" "shift+mod+e"], :editor/select-all-blocks "mod+a", :editor/zoom-out "mod+r", :go/search-in-page "mod+f", :go/search "mod+p", :ui/toggle-right-sidebar "t r", :ui/toggle-contents "t s", :editor/move-block-up ["mod+home" "mod+up"], :go/home "mod+s", :ui/toggle-settings "ctrl+,", :ui/toggle-left-sidebar "ctrl+t", :editor/toggle-open-blocks "t t", :editor/move-block-down ["mod+end" "mod+down"], :editor/open-edit "e", :ui/toggle-theme "shift+t", :ui/toggle-cards "shift+ctrl+c", :editor/zoom-in "mod+t"}
 
  ;; Whether to show command doc on hover
  :ui/show-command-doc? true
@@ -162,7 +162,7 @@
  
  :ui/show-brackets? false
  :date-formatter "MMM do, yyyy"
- :graph/settings {:journal? true, :builtin-pages? false}
+ :graph/settings {:journal? false, :builtin-pages? false, :orphan-pages? false}
  :favorites []
  :feature/enable-timetracking? false
  :feature/enable-journals? true
