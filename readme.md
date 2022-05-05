@@ -1,6 +1,6 @@
 ---
-title: none
-author: none
+title: Resume Management System
+author: Anmol, Anurag, Bharathwaj, Ishan, Thahir
 display: none
 ---
 
@@ -17,6 +17,10 @@ display: none
 ## Title
 
 Resume Management System
+
+## Repository
+
+The code and the documentation for this project is available on this [Github Repo](https://github.com/AhmedThahir/DBMS/).
 
 ## Concepts Used
 
@@ -46,6 +50,8 @@ We are also grateful to all the Department of Computer Science faculty for givin
 The job industry is booming with millions of job seakers each years. One of the most crucial elements which the job industry depends upon is the Database Management System, which is used to store, organize and retrieve the details of applicants. This requires a robust and efficient design of the Database to manage the data so that it can be accessed, modified, and stored quickly, with minimal storage space.
 
 ## Theory
+
+The following is the theory relevant to this project.
 
 ### Database
 
@@ -447,4 +453,35 @@ Similar queries in the user, company and admin php files for the specific user t
 ![13_Active_Jobs_admin_panel](assets/Screenshots/13_Active_Jobs_admin_panel.png)
 
 ![14_Company_List_Admin_Panel](assets/Screenshots/14_Company_List_Admin_Panel.png)
+
+# Usage
+
+The following are the steps to run this project yourself
+
+1. Clone the [Github Repo](https://github.com/AhmedThahir/DBMS/)
+
+2. Import the `git_repos_jobportal.sql` in the xampp mysql database
+
+3. Paste the `Job_Portal` folder into `htdocs` folder. (found in WAMPP, XAMMP, MAMPP installation folder)
+
+4. Start the Apache and Mysql services from the MAMPP server (mac), XAMPP server (windows).
+
+5. Run the following commands in the terminal
+
+   ```bash
+   cd Job-Portal
+   open db.php
+   ```
+
+6. Check that credentials for username and password are matching according to your system.
+
+7. Go to `localhost` and job posts will now be visible.
+
+8. Login with any of the below default accounts
+
+|   Type    | Username | Password |
+| :-------: | :------: | :------: |
+|   Admin   |  admin   |  12345   |
+| Candidate | m@m.com  |    m     |
+|  Company  | m@m.com  |    m     |
 
