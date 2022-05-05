@@ -24,12 +24,15 @@ The code and the documentation for this project is available on this [Github Rep
 
 ## Concepts Used
 
-- [x] mySQL
-- [x] Relational Model
-- [x] Schema Diagram
 - [x] ER Model
 - [x] ER Diagram
-- [x] 3NF Normalization
+- [x] Relational Model
+- [x] Schema Diagram
+- [x] Tuple Relational Calculus
+- [x] Domain Relational Calculus
+- [x] Normalization (1NF, 2NF, 3NF)
+- [x] mySQL
+- [x] GUI implementation
 
 # Acknowledgement
 
@@ -124,11 +127,12 @@ A diagrammatic representation of the entities and relations used.
 | Double Rectangle | Weak Entity Set<br />entity without a primary key            |
 | Diamond          | Relationship Set                                             |
 | Double Diamond   | Weak Relationship Set<br />relation connecting a weak entity with something else |
-| Dashed ellipse   | derived attribute                                            |
-| Double ellipse   | multi-valued attribute                                       |
-| Underline        | primary key attribute                                        |
+| Ellipse          | Attribute                                                    |
+| Dashed ellipse   | Derived attribute                                            |
+| Double ellipse   | Multi-valued attribute                                       |
+| Underline        | Primary Key Attribute                                        |
 | Triangle         | ‘is-a’ relation                                              |
-| Lines            | - link attribute **to** entity set<br />- link entity set **to** relationship set |
+| Lines            | - Link attribute **to** entity set<br />- Link entity set **to** relationship set |
 | $\to$            | **to** one                                                   |
 | $-$              | **to** many                                                  |
 
@@ -179,6 +183,8 @@ It is the process of structuring a database, usually a relational database, in a
 
 # Normalization
 
+In this project, we have only reached till 3NF. This is because BCNF and onwards may lead to lossy decomposition, with respect to the functional dependencies.
+
 ## Functional Dependencies
 
 ```
@@ -194,11 +200,11 @@ cities → id,name,state_id
 ```
 
 ```
-company → id_company, name, companyname, country, state, city, contactno, website, email, password, aboutme, logo, createdat, active
+company → id_company, name, companyname, country, state, city, contactno, website, email, password, aboutme, logo, createdAt, active
 ```
 
 ```
-countries → id, sortname, name, phonecode
+countries → id, country_code, name, phonecode
 ```
 
 ```
@@ -206,7 +212,7 @@ job_post → id_jobpost, id_company, jobtitle, description, minimumsalary, maxim
 ```
 
 ```
-mailbox → id_mailbox, id_fromuser, fromuser, id_touser, subject, message, createdat
+mailbox → id_mailbox, id_fromuser, fromuser, id_touser, subject, message, createdAt
 ```
 
 ```
@@ -224,7 +230,7 @@ users → id_user, firstname, lastname, email, password, address, city, state, c
 ## 1NF
 
 ```
-R(id_admin, username, password, id_apply, id_jobpost, id_company, id_user, status, id, name, state_id, id_company, name, companyname, country, state, city, contactno, website, email, password, aboutme, logo, createdat, active, id, sortname, name, phonecode, id_jobpost, id_company, jobtitle, description, minimumsalary, maximumsalary, experience, qualification, createdat, id_mailbox, id_fromuser, fromuser, id_touser, subject, message, createdat, id_reply, id_mailbox, id_user, usertype, message, createdAt, id, name, country_id, id_user, firstname, lastname, email, password, address, city, state, contactno, qualification, stream, passingyear, dob, age, designation, resume, hash, active, aboutme, skills)
+R(id_admin, username, password, id_apply, id_jobpost, id_company, id_user, status, id, name, state_id, id_company, name, companyname, country, state, city, contactno, website, email, password, aboutme, logo, createdat, active, id, country_code, name, phonecode, id_jobpost, id_company, jobtitle, description, minimumsalary, maximumsalary, experience, qualification, createdat, id_mailbox, id_fromuser, fromuser, id_touser, subject, message, createdAt, id_reply, id_mailbox, id_user, usertype, message, createdAt, id, name, country_id, id_user, firstname, lastname, email, password, address, city, state, contactno, qualification, stream, passingyear, dob, age, designation, resume, hash, active, aboutme, skills)
 ```
 
 ## 3NF
@@ -246,7 +252,7 @@ R4(id_company, name, companyname, country, state, city, contactno, website, emai
 ```
 
 ```
-R5(id, sortname, name, phonecode)
+R5(id, country_code, name, phonecode)
 ```
 
 ```

@@ -1,6 +1,0 @@
-- denormalization [[Anmol]]
-- normalization [[Anmol]] [[Thahir]]
-- reportification [[Thahir]]
-- queries, subqueries from all concepts [[Ishan]] [[Bharat]]
-- trc, drc, all
-- application [[Anurag]]

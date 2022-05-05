@@ -1,2 +1,0 @@
-- why didn't you use triggers when someone creates a new post
-	- ((6254f3f2-34a9-4bb5-a150-fb324da16be8))
