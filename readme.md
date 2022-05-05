@@ -1,31 +1,154 @@
 # Team
 
-| Name         | ID            | Contribution            |
-| ------------ | ------------- | ----------------------- |
-| Ahmed Thahir | 2020A7PS0198U | Documentation, Diagrams |
-|              |               |                         |
-|              |               |                         |
+|      ID       |         Name          |      Contribution       |
+| :-----------: | :-------------------: | :---------------------: |
+| 2020A7PS0080U |     Bharathwaj M      |         Queries         |
+| 2020A7PS0107U | Ishan Anthony Menezes |     Queries, RA, RC     |
+| 2020A7PS0128U |   Anurag Kumar Jha    |   Application Backend   |
+| 2020A7PS0198U |     Ahmed Thahir      | Diagrams, Documentation |
+| 2020A7PS0221U |  Anmol Deepak Kumar   |  Normalization, Report  |
+
+# Acknowledgement
+
+Firstly, we would like to thank our family and friends for their constant support.
+
+Secondly, we would like to express my sincere gratitude to all Department of Computer Science Professors for allowing us to apply my expertise in this assignment.
+
+Our humble and noteworthy appreciation is due to Dr. Sapna Sadhwani, Dr. Tamizharasan Periyaswamy and Dr. Pramod Gaur for their guidance and assistance in the completion of this assignment.
+
+We are also grateful to all the Department of Computer Science faculty for giving us the required knowledge to program using the mySQL querying language to implement our ideas for this project.
+
+[toc]
 
 # Introduction
 
+## Historical Background
+
+The job industry is booming with millions of job seakers each years. One of the most crucial elements which the job industry depends upon is the Database Management System, which is used to store, organize and retrieve the details of applicants. This requires a robust and efficient design of the Database to manage the data so that it can be accessed, modified, and stored quickly, with minimal storage space.
+
+## 
+
+## Theory
+
+### Database
+
+A database is a collection of data.
+
+### Relational Database
+
+A database is a collection of data, in the form of rows and columns.
+
+### Transaction
+
+A transaction is an atomic unit of a database operation. Hundreds of transactions may take place concurrently at any instant. A transaction may be one of the CRUD operations
+
+- Create
+- Read
+- Update (or Insert)
+- Delete
+
+### DBMS
+
+A ‘DataBase Management System’ is a system for handling large amounts of data stored in one or more databases. It is also called as a ‘Transaction Processing System’.
+
+### Querying Language
+
+A querying language is a set of commands that facilitates database operations.
+
+### Database Design
+
+There are various ways of designing the structure(schema) of a database. The database must be designed well before inserting values, to ensure inconsistencies.
+
+The logical schema depicts the structure of the database, showing the tables, columns, and relationships with other tables in the database, and is a direct mapping of the Entity-Relationship diagram. The physical schema is created by actually generating the tables, columns, and relationships in the DBMS, using a querying language.
+
+Relational databases are ACID-compliant, but NoSQL aren’t
+
+- Atomicity
+  If any sub-steps of a transaction(Operation/Query) fails, the whole transaction must fail and the database must be in the same state as the original.
+- Consistency
+  Correct data is ensured through constraints
+- Isolation
+  Concurrent-Execution Safe
+  Simultaneous transactions must be considered as multiple sequential transactions.
+- Durability
+  Committed transactions must be stored to a non-volatile memory, to prevent loss of data.
+
+### ER Model
+
+A database is modelled as
+
+- entity set
+- relationship sets
+
+| Term                       | Meaning                                                  | Example                                         |
+| -------------------------- | -------------------------------------------------------- | ----------------------------------------------- |
+| Entity                     | unique object                                            | specific person, company                        |
+| Entity Set                 | set of entities                                          |                                                 |
+| Attributes                 | properties/features of an entity/relationship            | name, age                                       |
+| Composite Attributes       | sub-attributes                                           | first name, last name                           |
+| Relationship               | association among several entites                        |                                                 |
+| Relationship Sets          | set of relationships                                     |                                                 |
+| Degree of Relationship Set | no of entity sets that participate in a relationship set |                                                 |
+| Mapping Cardinalities      | Type of mapping                                          | One-One<br/>One-Many<br/>Many-One<br/>Many-Many |
+
+### ER Diagram
+
+A diagrammatic representation of the entities and relations used.
+
+| Shape            | Meaning                                                      |
+| ---------------- | ------------------------------------------------------------ |
+| Rectangle        | Entity Set                                                   |
+| Double Rectangle | Weak Entity Set<br />entity without a primary key            |
+| Diamond          | Relationship Set                                             |
+| Double Diamond   | Weak Relationship Set<br />relation connecting a weak entity with something else |
+| Dashed ellipse   | derived attribute                                            |
+| Double ellipse   | multi-valued attribute                                       |
+| Underline        | primary key attribute                                        |
+| Triangle         | ‘is-a’ relation                                              |
+| Lines            | - link attribute **to** entity set<br />- link entity set **to** relationship set |
+| $\to$            | **to** one                                                   |
+| $-$              | **to** many                                                  |
+
+### Relational Model
+
+A database is a collection of relations, where each relations is a table.
+
+### Schema Diagram
+
+A diagrammatic representation of the relations used.
+
+### Normalization
+
+It is the process of structuring a database, usually a relational database, in accordance with a series of so-called normal forms in order to reduce data redundancy and improve data integrity.
+
+|                               | 1NF  | 2NF  | 3NF  | BCNF | 4NF  | 5NF  |
+| ----------------------------- | :--: | :--: | :--: | :--: | :--: | :--: |
+| No Multi-Valued Attributes    |  ✅   |  ✅   |  ✅   |  ✅   |  ✅   |  ✅   |
+| No Partial Dependency         |      |  ✅   |  ✅   |  ✅   |  ✅   |  ✅   |
+| No Transitive Dependency      |      |      |  ✅   |  ✅   |  ✅   |  ✅   |
+| LHS = Candidate/Super Key     |      |      |      |  ✅   |  ✅   |  ✅   |
+| No Multi-Attribute Dependency |      |      |      |      |  ✅   |  ✅   |
+| Lossless Decomposition        |      |      |      |      |      |  ✅   |
+
 ## Tools
 
-| Tool      | Full Form                 | Use                                                          |
-| --------- | ------------------------- | ------------------------------------------------------------ |
-| HTML      | HyperText Markup Language | Layout of web pages                                          |
-| CSS       | Cascading Style Sheets    | Design of web pages                                          |
-| Bootstrap |                           | CSS framework for developing responsive web pages            |
-| Php       |                           | Backend<br />- Calling SQL<br />- Serving dynamic content to user |
-| mySQL     |                           | Structured Relational Database Querying Language             |
-| Xampp     |                           | - Database manipulation<br />- Locally hosting the website   |
+| Tool      | Full Form                                   | Use                                                          |
+| --------- | ------------------------------------------- | ------------------------------------------------------------ |
+| HTML      | HyperText Markup Language                   | Layout of web pages                                          |
+| CSS       | Cascading Style Sheets                      | Design of web pages                                          |
+| Bootstrap |                                             | CSS framework for developing responsive web pages            |
+| Php       | Hypertext Preprocessor                      | Backend<br />- Calling SQL<br />- Serving dynamic content to user |
+| mySQL     | My Structured Query Language                | Structured Relational Database Querying Language             |
+| Xampp     | cross-platform, Apache, MySQL, PHP and Perl | - Database manipulation<br />- Locally hosting the website   |
 
 # Limitations
 
 1. Dynamic Sites are not as performant as static sites
-2. Filter is not dynamic (it is hard-coded)
-3. There are a few hyperlinks which don’t work properly
-   - report button down as the site is not hosted on any server
-4. The webpage is hosted locally at the moment. Needs to be run on the server.
+2. Filters are not dynamic currently (it is hard-coded)
+3. There are a few hyperlinks which don’t work properly.
+   For example, report button down as the site is not hosted on any server
+4. The webpage is hosted locally at the moment. Needs to be run on the server
+4. Relational database paradigm is not the most efficient to deal with a networking model, with unstructured data. A NoSQL paradigm could be used in the future to deal with large loads.
 
 # ER Diagram
 
@@ -37,14 +160,14 @@
 
 # Design
 
-| Table                      | Details                                                      |
-| -------------------------- | ------------------------------------------------------------ |
-| `admin`                    | - admin username<br />- admin password<br />- Holds details about the active companies registered, candidates registered, total job posts and total applications.<br />- Permissions to remove any user or candidate<br />- Any company before being able to recruit and post jobs must be verified by the admin. |
-| `apply_job_post`           | Id_apply: acts as primary key with auto increment on<br/>Id_job_post: acts as the id for the GET method of php for opening the specific webpage having job<br/>decription<br/>Id company/user : id of user or the company<br/>Status: status of the job post depending on the admin. A job post is published only after validation<br/>by the admin |
-| `City`, `state`, `country` | - Large database of the cities, states and tables connected together by id of state and<br/>countries.<br />- Created separately since while creating forms the option to select country comes first, then the state and then the city.<br />- None of these are compulsory so the 3 tables are kept separately so that if a user only provides country or country-state it works as well. |
-| `Company`                  | - Consists of all the details of the country. The logo is stored as image format in the uploads folder.<br />- Any company before being to operate must be able to be verified from the admin when their active column changes from 2 to 1. |
-| `Users`                    | - Similar to the companies these include all the users looking for jobs.<br />- The resume is stored as pdf(size smaller than 5 mb) and is stored in the uploads folder.<br />- The passwords are stored after applying decoding so that even the admin or the superuser can’t access the password. |
-| `Mailbox`,`Reply`          | - Inbuilt mailing technique b/w the users and the companies, the user can have converstion with the employee who have interest in their application.<br />- The design is similar to Gmail<br />- all the information is stored in the sql file i.e. the message, from, to and the date. |
+|                Table                | Details                                                      |
+| :---------------------------------: | ------------------------------------------------------------ |
+|               `admin`               | - admin username<br />- admin password<br />- Holds details about the active companies registered, candidates registered, total job posts and total applications.<br />- Permissions to remove any user or candidate<br />- Any company before being able to recruit and post jobs must be verified by the admin. |
+|          `apply_job_post`           | Id_apply: acts as primary key with auto increment on<br/>Id_job_post: acts as the id for the GET method of php for opening the specific webpage having job<br/>decription<br/>Id company/user : id of user or the company<br/>Status: status of the job post depending on the admin. A job post is published only after validation by the admin. |
+| `City`<br />`state`<br /> `country` | - Large database of the cities, states and tables connected together by id of state and<br/>countries.<br />- Created separately since while creating forms the option to select country comes first, then the state and then the city.<br />- None of these are compulsory so the 3 tables are kept separately so that if a user only provides country or country-state it works as well. |
+|              `Company`              | - Consists of all the details of the country. The logo is stored as image format in the uploads folder.<br />- Any company before being to operate must be able to be verified from the admin when their active column changes from 2 to 1. |
+|               `Users`               | - Similar to the companies these include all the users looking for jobs.<br />- The resume is stored as pdf(size smaller than 5 mb) and is stored in the uploads folder.<br />- The passwords are stored after applying decoding so that even the admin or the superuser can’t access the password. |
+|       `Mailbox`<br />`Reply`        | - Inbuilt mailing technique b/w the users and the companies, the user can have converstion with the employee who have interest in their application.<br />- The design is similar to Gmail<br />- all the information is stored in the sql file i.e. the message, from, to and the date. |
 # Implementation
 
 ## Connections
@@ -62,13 +185,13 @@ $result = $conn->query($sql);
 
 ## PHP File Roles
 
-| PHP File                                | Role                                                         |
-| --------------------------------------- | ------------------------------------------------------------ |
-| `index.php`                             | The main php file that opens up at the start. Contains link to other pages like login and register and also the admin login. Shows 4(using sql limit) recently available job offers at the centre. |
-| `jobs.php`                              | Contains the job offers 4 per page(again by using limit 4, for this code is written in `jobpagination.php`).<br />The filters applied are using the help of search.php which applies the filters of city and experience.<br />Currently the cities are navi-mumbai and Bengaluru but more can be added as required.<br />Clicking on any of these open the `view-job-post.php` |
-| `view-job-post.php`                     | - also has an id at the end of url required to identified which job post page to open as all have the same format.<br />- This id is sent using the GET method of php. |
-| `login.php`/`signup.php`/`register.php` | - These are the pages which open the login and signup pages.<br />- The details of username and password are checked using the `checklogin.php` and `checkcompanylogin.php`.<br />- All the login and register pages have the standard php code for validation of phone number, email id, pdf size etc.<br />- These can be seen at W3Schools itself. |
-| Folders of `user`/`company`/`admin`     | - These contain the php pages to be loaded when the corresponding people are logged in.<br />- This is known by using the session global variable of php to know which of these is set.<br />- The php files within are pretty simple to those mentioned above with the exception that these are a little more specified for the particular kind of user. |
+|                      PHP File                       | Role                                                         |
+| :-------------------------------------------------: | ------------------------------------------------------------ |
+|                       `index`                       | The main php file that opens up at the start. Contains link to other pages like login and register and also the admin login. Shows 4(using sql limit) recently available job offers at the centre. |
+|                       `jobs`                        | Contains the job offers 4 per page(again by using limit 4, for this code is written in `jobpagination.php`).<br />The filters applied are using the help of search.php which applies the filters of city and experience.<br />Currently the cities are navi-mumbai and Bengaluru but more can be added as required.<br />Clicking on any of these open the `view-job-post.php` |
+|                   `view-job-post`                   | - also has an id at the end of url required to identified which job post page to open as all have the same format.<br />- This id is sent using the GET method of php. |
+|        `login`<br />`signup`<br />`register`        | - These are the pages which open the login and signup pages.<br />- The details of username and password are checked using the `checklogin.php` and `checkcompanylogin.php`.<br />- All the login and register pages have the standard php code for validation of phone number, email id, pdf size etc.<br />- These can be seen at W3Schools itself. |
+| Folders of<br /> `user`<br />`company`<br />`admin` | - These contain the php pages to be loaded when the corresponding people are logged in.<br />- This is known by using the session global variable of php to know which of these is set.<br />- The php files within are pretty simple to those mentioned above with the exception that these are a little more specified for the particular kind of user. |
 
 ## Queries
 
@@ -185,3 +308,6 @@ $sql = "SELECT * FROM job_post INNER JOIN company ON job_post.id_company=company
 ```
 
 Similar queries in the user, company and admin php files for the specific user types.
+
+# Screenshots
+
