@@ -1,4 +1,4 @@
-# Team
+# Summary
 
 |      ID       |         Name          |      Contribution       |
 | :-----------: | :-------------------: | :---------------------: |
@@ -7,6 +7,19 @@
 | 2020A7PS0128U |   Anurag Kumar Jha    |   Application Backend   |
 | 2020A7PS0198U |     Ahmed Thahir      | Diagrams, Documentation |
 | 2020A7PS0221U |  Anmol Deepak Kumar   |  Normalization, Report  |
+
+## Title
+
+Resume Management System
+
+## Concepts Used
+
+- [x] mySQL
+- [x] Relational Model
+- [x] Schema Diagram
+- [x] ER Model
+- [x] ER Diagram
+- [x] 3NF Normalization
 
 # Acknowledgement
 
@@ -25,8 +38,6 @@ We are also grateful to all the Department of Computer Science faculty for givin
 ## Historical Background
 
 The job industry is booming with millions of job seakers each years. One of the most crucial elements which the job industry depends upon is the Database Management System, which is used to store, organize and retrieve the details of applicants. This requires a robust and efficient design of the Database to manage the data so that it can be accessed, modified, and stored quickly, with minimal storage space.
-
-## 
 
 ## Theory
 
@@ -64,7 +75,7 @@ The logical schema depicts the structure of the database, showing the tables, co
 Relational databases are ACID-compliant, but NoSQL aren’t
 
 - Atomicity
-  If any sub-steps of a transaction(Operation/Query) fails, the whole transaction must fail and the database must be in the same state as the original.
+  If any sub-steps of a transaction fails, the whole transaction must fail and the database must be in the same state as the original.
 - Consistency
   Correct data is ensured through constraints
 - Isolation
@@ -153,6 +164,98 @@ It is the process of structuring a database, usually a relational database, in a
 # ER Diagram
 
 ![](assets/er.svg)
+
+# Normalization
+
+## Functional Dependencies
+
+```
+admin → id_admin, username, password
+```
+
+```
+apply_job_post → id_apply, id_jobpost, id_company, id_user, status
+```
+
+```
+cities → id,name,state_id
+```
+
+```
+company → id_company, name, companyname, country, state, city, contactno, website, email, password, aboutme, logo, createdat, active
+```
+
+```
+countries → id, sortname, name, phonecode
+```
+
+```
+job_post → id_jobpost, id_company, jobtitle, description, minimumsalary, maximumsalary, experience, qualification, createdat
+```
+
+```
+mailbox → id_mailbox, id_fromuser, fromuser, id_touser, subject, message, createdat
+```
+
+```
+reply_mailbox → id_reply, id_mailbox, id_user, usertype, message, createdAt
+```
+
+```
+states → id, name, country_id
+```
+
+```
+users → id_user, firstname, lastname, email, password, address, city, state, contactno, qualification, stream, passingyear, dob, age, designation, resume, hash, active, aboutme, skills
+```
+
+## 1NF
+
+```
+R(id_admin, username, password, id_apply, id_jobpost, id_company, id_user, status, id, name, state_id, id_company, name, companyname, country, state, city, contactno, website, email, password, aboutme, logo, createdat, active, id, sortname, name, phonecode, id_jobpost, id_company, jobtitle, description, minimumsalary, maximumsalary, experience, qualification, createdat, id_mailbox, id_fromuser, fromuser, id_touser, subject, message, createdat, id_reply, id_mailbox, id_user, usertype, message, createdAt, id, name, country_id, id_user, firstname, lastname, email, password, address, city, state, contactno, qualification, stream, passingyear, dob, age, designation, resume, hash, active, aboutme, skills)
+```
+
+## 3NF
+
+```
+R1(id_admin, username, password)
+```
+
+```
+R2(id_apply, id_jobpost, id_company, id_user,status)
+```
+
+```
+R3(id, name, state_id)
+```
+
+```
+R4(id_company, name, companyname, country, state, city, contactno, website, email, password, aboutme, logo, createdat, active)
+```
+
+```
+R5(id, sortname, name, phonecode)
+```
+
+```
+R6(id_jobpost, id_company, jobtitle, description, minimumsalary, maximumsalary, experience, qualification, createdat)
+```
+
+```
+R7(id_mailbox, id_fromuser, fromuser, id_touser, subject, message, createdat)
+```
+
+```
+R8(id_reply, id _mailbox, id_user, usertype, message, createdAt)
+```
+
+```
+R9(id, name, country_id)
+```
+
+```
+R10(id_user, firstname, lastname, email, password, address, city, state, contactno, qualification, stream, passingyear, dob, age, designation, resume, hash, active, aboutme, skills)
+```
 
 # Schema Diagram
 
