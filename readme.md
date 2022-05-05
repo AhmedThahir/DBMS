@@ -1,3 +1,9 @@
+---
+title: none
+author: none
+display: none
+---
+
 # Summary
 
 |      ID       |         Name          |      Contribution       |
@@ -413,4 +419,32 @@ $sql = "SELECT * FROM job_post INNER JOIN company ON job_post.id_company=company
 Similar queries in the user, company and admin php files for the specific user types.
 
 # Screenshots
+
+![1_Index_Page](assets/Screenshots/1_Index_Page.png)
+
+![2_Index_Page](assets/Screenshots/2_Index_Page.png)
+
+![3_Login_Page_Users_Companies](assets/Screenshots/3_Login_Page_Users_Companies.png)
+
+![4_Signin_page](assets/Screenshots/4_Signin_page.png)
+
+![5_Users_Index_Page](assets/Screenshots/5_Users_Index_Page.png)
+
+![6_Mail_Box_Page](assets/Screenshots/6_Mail_Box_Page.png)
+
+![7_User_Registration_Page](assets/Screenshots/7_User_Registration_Page.png)
+
+![8_Company_Register_Page](assets/Screenshots/8_Company_Register_Page.png)
+
+![9_Company_Dashboard](assets/Screenshots/9_Company_Dashboard.png)
+
+![10_Createing_Jobpost_page](assets/Screenshots/10_Createing_Jobpost_page.png)
+
+![11_Resume_of_applicants_page](assets/Screenshots/11_Resume_of_applicants_page.png)
+
+![12_Admin_dashboard](assets/Screenshots/12_Admin_dashboard.png)
+
+![13_Active_Jobs_admin_panel](assets/Screenshots/13_Active_Jobs_admin_panel.png)
+
+![14_Company_List_Admin_Panel](assets/Screenshots/14_Company_List_Admin_Panel.png)
 
