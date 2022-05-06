@@ -1,6 +1,7 @@
 ---
-title: Resume Database Management System
+title: Recruitment Database Management System
 author: Anmol, Anurag, Bharathwaj, Ishan, Thahir
+footer: ${pageNo} / ${totalPages}
 display: none
 ---
 
@@ -16,7 +17,7 @@ display: none
 
 ## Title
 
-Resume Database Management System
+Recruitment Database Management System
 
 ## Repository
 
@@ -43,9 +44,15 @@ The code and the documentation for this project is available on this [Github Rep
 
 # Acknowledgement
 
-Firstly, we would like to thank our family and friends for their constant support. Secondly, we would like to express my sincere gratitude to all Department of Computer Science Professors for allowing us to apply my expertise in this assignment.
+Firstly, we would like to thank our family and friends for their constant support throughout our academic life and for this project in particular. They are who inspire us to keep marching forward in our academic journey.
 
-Our humble and noteworthy appreciation is due to Ms. Sapna Sadhwani, Dr. Tamizharasan Periyaswamy and Dr. Pramod Gaur for their guidance and assistance in the completion of this assignment. We are also grateful to all the Department of Computer Science faculty for giving us the required knowledge to program using the mySQL querying language to implement our ideas for this project.
+Secondly, we would like to express our sincere gratitude to all Department of Computer Science Professors for allowing us to apply our expertise in this assignment. This project has been a very good opportunity to test our skills.
+
+Thirdly, we would like to thank Mr. Ahamed Jameel, who proposed this idea to help out his (and Thahir’s) hometown get better employment opportunities in the UAE. His guidance and ideas throughout this project have been insightful and valuable. We hope that this project turns out to be fruitful and helps out a lot of people.
+
+Furthermore, we would like to thank our university BITS Pilani, Dubai Campus for providing us with the required infrastructure to facilate efficient learning, especially at the time of a [declining] pandemic.
+
+Lastly, our humble and noteworthy appreciation is due to Ms. Sapna Sadhwani, Dr. Tamizharasan Periyaswamy and Dr. Pramod Gaur for their guidance and assistance in the completion of this assignment. We are also grateful to all the Department of Computer Science faculty for giving us the required knowledge to program using the mySQL querying language to implement our ideas for this project.
 
 [toc]
 
@@ -54,6 +61,8 @@ Our humble and noteworthy appreciation is due to Ms. Sapna Sadhwani, Dr. Tamizha
 ## Historical Background
 
 The job industry is booming with millions of job seakers each years. One of the most crucial elements which the job industry depends upon is the Database Management System, which is used to store, organize and retrieve the details of applicants. This requires a robust and efficient design of the Database to manage the data so that it can be accessed, modified, and stored quickly, with minimal storage space.
+
+Thahir’s hometown Kayalpatnam currently has a large number of job seekers in the UAE. We would like to use this application to help them reach potential employers.
 
 ## Theory
 
@@ -555,8 +564,8 @@ $$
 ```mysql
 SELECT j.companyname, j.jobtitle, j,description, j.minimumsalary, j.maximumsalary, j.experience
 FROM job_post as j, (SELECT id_jobpost, city
-				FROM job\_post, company
-				WHERE job\_post.id\_company= company.id\_company) as c
+				FROM job_post, company
+				WHERE job_post.id_company= company.id_company) as c
 WHERE j.id_jobpost=c.id_jobpost AND c.city='city';
 ```
 
@@ -745,7 +754,7 @@ $$
 ```mysql
 SELECT email 
 FROM company 
-WHERE email ='\$email';
+WHERE email ='$email';
 ```
 
 **RA**
@@ -775,7 +784,7 @@ $$
 ```mysql
 SELECT email
 FROM users
-WHERE email ='\$email';
+WHERE email ='$email';
 ```
 
 **RA**
@@ -803,7 +812,7 @@ $$
 ```mysql
 SELECT *
 FROM job_post
-WHERE id_jobpost ='$_GETid]';
+WHERE id_jobpost ='$_GET[id]';
 ```
 
 **RA**
@@ -837,9 +846,9 @@ $$
 ## Retrieve company details
 
 ```mysql
-SELECT id\_company,companyname,email,active
+SELECT id_company,companyname,email,active
 FROM company
-WHERE email='\$email' AND password='\$password';
+WHERE email='$email' AND password='$password';
 ```
 
 **RA**
@@ -872,8 +881,8 @@ $$
 
 ```mysql
 SELECT *
-FROM apply\_job\_post
-WHERE id\_user=‘\$\_SESSION[id\_user]' AND id\_jobpost='\$row[id\_jobpost]';
+FROM apply_job_post
+WHERE id_user='$_SESSION[id_user]' AND id_jobpost='$row[id_jobpost]';
 ```
 
 **RA**
@@ -906,7 +915,7 @@ $$
 ```mysql
 SELECT *
 FROM cities
-WHERE state\_id ="\$\_POST[id]";
+WHERE state_id ="$_POST[id]";
 ```
 
 **RA**
@@ -933,10 +942,10 @@ $$
 ## Retrieve certain jobpost and their company details
 
 ```mysql
-SELECT * job\_post
+SELECT * job_post
 INNER JOIN company
-ON job\_post
-WHERE id\_jobpost='\$\_GET[id]';
+ON job_post
+WHERE id_jobpost='$_GET[id]';
 ```
 
 **RA** 
