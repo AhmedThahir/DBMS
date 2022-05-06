@@ -460,6 +460,10 @@ Similar queries in the user, company and admin php files for the specific user t
 
 ![14_Company_List_Admin_Panel](assets/Screenshots/14_Company_List_Admin_Panel.png)
 
+# Extra Queries
+
+
+
 # Usage
 
 The following are the steps to run this project yourself
