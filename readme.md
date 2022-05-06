@@ -1,5 +1,5 @@
 ---
-title: Resume Management System
+title: Resume Database Management System
 author: Anmol, Anurag, Bharathwaj, Ishan, Thahir
 display: none
 ---
@@ -16,7 +16,7 @@ display: none
 
 ## Title
 
-Resume Management System
+Resume Database Management System
 
 ## Repository
 
@@ -40,7 +40,7 @@ Firstly, we would like to thank our family and friends for their constant suppor
 
 Secondly, we would like to express my sincere gratitude to all Department of Computer Science Professors for allowing us to apply my expertise in this assignment.
 
-Our humble and noteworthy appreciation is due to Dr. Sapna Sadhwani, Dr. Tamizharasan Periyaswamy and Dr. Pramod Gaur for their guidance and assistance in the completion of this assignment.
+Our humble and noteworthy appreciation is due to Ms. Sapna Sadhwani, Dr. Tamizharasan Periyaswamy and Dr. Pramod Gaur for their guidance and assistance in the completion of this assignment.
 
 We are also grateful to all the Department of Computer Science faculty for giving us the required knowledge to program using the mySQL querying language to implement our ideas for this project.
 
