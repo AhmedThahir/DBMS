@@ -485,19 +485,19 @@ delimiter ;
 select * from contact_from_company(*some company name*);
 ```
 
-### RA
+**RA**
 $$
 \pi_\text{contactno} \text{(}
 \sigma_\text{companyname='companyname'}
 \text{(company))}
 $$
-### TRC
+**TRC**
 $$
 \{\text{t}| \exists \text{c} \in \text{company(}
 \text{t[contactno]=c[contactno]} \land
 \text{c[companyname]='companyname')}\}
 $$
-### DRC
+**DRC**
 $$
 \{<\text{co}>|
 \exists \text{ic,n,cn,c,st,ci,w,e,p,a,l,cd,ac(}
@@ -522,13 +522,13 @@ delimiter ;
 call job_from_qualification(*some userid*);
 ```
 
-### RA
+**RA**
 $$
 \pi_\text{jobtitle,description,minimumsalary,maximumsalary,experience} \text{(}
 \sigma_\text{id\_user='userid'}
 \text{(users} \bowtie \text{job\_post))}
 $$
-### TRC
+**TRC**
 $$
 \{\text{t} | \exists \text{u}\in \text{users(}
 \text{u[id\_user]='userid'} \land
@@ -540,7 +540,7 @@ $$
 \text{t[experience]=j[experience]} \land
 \text{u[qualification]=j[qualification]))}\}
 $$
-### DRC
+**DRC**
 $$
 \{<\text{jt,desc,mins,maxs,ex}>|
 \exists \text{iu,fn,ln,em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk(} \\
@@ -560,13 +560,13 @@ FROM job_post as j, (SELECT id_jobpost, city
 WHERE j.id_jobpost=c.id_jobpost AND c.city='city';
 ```
 
-### RA
+**RA**
 $$
 \pi_\text{companyname,jobtitle,description,minimumsalary,maximumsalary,experience} \text{(}
 \sigma_\text{city='city'}
 \text{(job\_post}\bowtie \text{company))}
 $$
-### TRC
+**TRC**
 $$
 \{\text{t} | \exists \text{j} \in \text{job\_post(}
 \text{t[jobtitle]=j[jobtitle]} \land \text{t[description]=j[description]} \land \\
@@ -576,7 +576,7 @@ $$
 \text{j[id\_company]=c[id\_company]} \land
 \text{c[city]='city'))}\}
 $$
-### DRC
+**DRC**
 $$
 \{<\text{cn,jt,desc,mins,maxs,ex}>|
 \exists \text{ij,ic,q,crd(}
@@ -602,13 +602,13 @@ delimiter ;
 select * from resume_from_apply_jobpost(*some id_jobpost*);
 ```
 
-### RA
+**RA**
 $$
 \pi_\text{id\_user, email, resume} \text{(}
 \sigma_\text{id\_jobpost='jobpostid'}
 \text{(users} \bowtie \text{apply\_job\_post))}
 $$
-### TRC
+**TRC**
 $$
 \{\text{t}|\exists \text{u} \in \text{users(}
 \text{t[id\_user]=u[id\_user]} \land \\
@@ -618,7 +618,7 @@ $$
 \text{aj[id\_jobpost]='jobpostid'} \land
 \text{u[id\_user]=aj[id\_user]))}\}
 $$
-### DRC
+**DRC**
 $$
 \{<\text{iu,em,res}>|
 \exists \text{fn,ln,pa,ad,ci,st,con,q,s,py,dob,age,desg,h,act,abt,sk(} \\
@@ -645,14 +645,14 @@ delimiter ;
 call job_from_minimumsalary(*some user_id*, *some minimumsalary*);
 ```
 
-### RA
+**RA**
 $$
 \pi_\text{jobtitle,description,minimumsalary,maximumsalary,experience} \text{(} \\
 \sigma_{\text{id\_user='userid'} \land
 \text{maximumsalary}>\text{'minimumsalary'}}
 \text{(users} \bowtie \text{job\_post))}
 $$
-### TRC
+**TRC**
 $$
 \{\text{t} | \exists \text{u} \in \text{users(}
 \text{u[id\_user]='userid'} \land
@@ -669,7 +669,7 @@ $$
 \\
 \text{j[maximumsalary]>'minimumsalary'))}\}
 $$
-### DRC
+**DRC**
 $$
 \{<\text{jt,desc,mins,maxs,ex}>|
 \exists \text{iu,fn,ln,em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk(} \\
@@ -688,12 +688,12 @@ FROM users
 WHERE id_user IN (SELECT id_user FROM apply_job_post);
 ```
 
-### RA
+**RA**
 $$
 \pi_\text{id\_user,firstname,lastname}
 \text{(users} \bowtie \text{apply\_job\_post)}
 $$
-### TRC
+**TRC**
 $$
 \{\text{t}| \exists \text{u} \in \text{users(}
 \text{t[id\_user]=u[id\_user]} \land
@@ -702,7 +702,7 @@ $$
 \exists \text{aj} \in \text{apply\_job\_post(}
 \text{u[id\_user]=aj[id\_user]))}\}
 $$
-### DRC
+**DRC**
 $$
 \{<\text{iu,fn,ln}>|
 \exists \text{em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk(} \\
@@ -719,19 +719,19 @@ FROM company
 WHERE company.id_company IN (SELECT id_company FROM job_post);
 ```
 
-### RA
+**RA**
 $$
 \pi_\text{city}
 \text{(company} \bowtie \text{job\_post)}
 $$
-### TRC
+**TRC**
 $$
 \{\text{t}| \exists \text{c} \in \text{company(}
 \text{t[city]=c[city]} \land
 \exists \text{j} \in \text{job\_post(}
 \text{c[id\_company]=j[id\_company]))}\}
 $$
-### DRC
+**DRC**
 $$
 \{<ci>|
 \exists \text{ic,n,cn,c,st,co,w,e,p,a,l,cd,ac(} \\
@@ -748,7 +748,7 @@ FROM company
 WHERE email ='\$email';
 ```
 
-### RA
+**RA**
 
 $$
 \pi_\text{email} \text{(}
@@ -756,13 +756,13 @@ $$
 \text{(company)})
 $$
 
-### TRC
+**TRC**
 $$
 \{\text{t}|\exists \text{c} \in \text{company(}
 \text{t[email]=c[email]} \land
 \text{c[email]='\$email')}\}
 $$
-### DRC
+**DRC**
 $$
 \{<e>|
 \exists \text{ic,n,cn,c,st,ci,co,w,p,a,l,cd,ac(}
@@ -778,19 +778,19 @@ FROM users
 WHERE email ='\$email';
 ```
 
-### RA
+**RA**
 $$
 \pi_\text{email} \text{(}
 \sigma_\text{email='\$email'}
 \text{(users))}
 $$
-### TRC
+**TRC**
 $$
 \{\text{t}| \exists \text{u} \in \text{users(}
 \text{t[email]=u[email]} \land
 \text{u[email]='\$email')}\}
 $$
-### DRC
+**DRC**
 $$
 \{<em>|
 \exists \text{iu,fn,ln,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk(} \\
@@ -806,13 +806,13 @@ FROM job_post
 WHERE id_jobpost ='$_GETid]';
 ```
 
-### RA
+**RA**
 $$
 \sigma_\text{id\_jobpost='\$\_{GET[id]}}
 \text{(job\_post)}
 $$
 
-### TRC
+**TRC**
 $$
 \{\text{t}| \exists \text{j} \in \text{job\_post(}
 \text{t[id\_jobpost]=j[id\_jobpost]} \land
@@ -827,7 +827,7 @@ $$
 \text{j[id\_jobpost]='\$\_GET[id]')}\}
 $$
 
-### DRC
+**DRC**
 
 $$
 \{<\text{ij,ic,jt,desc,mins,max,ex,q,crd}>|
@@ -842,14 +842,14 @@ FROM company
 WHERE email='\$email' AND password='\$password';
 ```
 
-### RA
+**RA**
 $$
 \pi_\text{id\_company,companyname,email,active} \text{(}
 \sigma_{\text{email='\$email'} \land
 \text{password ='\$password'}}
 \text{(company))}
 $$
-### TRC
+**TRC**
 $$
 \{t| \exists \text{c} \in \text{company(}
 \text{t[id\_company]=c[id\_company]} \land \\
@@ -858,7 +858,7 @@ $$
 \text{t[active]=c[active]} \land
 \text{c[email]='\$email')}\}
 $$
-### DRC
+**DRC**
 $$
 \{<\text{ic,cn,e,ac}>|
 \exists \text{n,c,st,ci,co,w,p,a,l,cd(} \\
@@ -876,13 +876,13 @@ FROM apply\_job\_post
 WHERE id\_user=‘\$\_SESSION[id\_user]' AND id\_jobpost='\$row[id\_jobpost]';
 ```
 
-### RA
+**RA**
 $$
 \sigma_{\text{id\_user=‘\$\_SESSION[id\_user]'} \land
 \text{id\_jobpost='\$row[id\_jobpost]'}}
 \text{(apply\_job\_post)}
 $$
-### TRC
+**TRC**
 $$
 \{\text{t}| \exists \text{aj} \in \text{apply\_job\_post(}
 \text{t[id\_apply]=aj[id\_apply]} \land
@@ -893,7 +893,7 @@ $$
 \text{aj[id\_user]='\$\_SESSION[id\_user]} \land
 \text{id\_jobpost='\$row[id\_jobpost])}\}
 $$
-### DRC
+**DRC**
 $$
 \{<\text{ia,ij,ic,iu,stat}>|
 <\text{ia,ij,ic,iu,stat}> \in \text{apply\_job\_post} \land \\
@@ -909,13 +909,13 @@ FROM cities
 WHERE state\_id ="\$\_POST[id]";
 ```
 
-### RA
+**RA**
 $$
 \sigma_\text{state\_id ='\$\_POST[id]}
 \text{(cities)}
 $$
 
-### TRC
+**TRC**
 $$
 \{\text{t}| \exists \text{ci} \in \text{cities(}
 \text{t[id]=ci[id]} \land
@@ -923,7 +923,7 @@ $$
 \text{t[state\_id]=ci[state\_id]} \land
 \text{c[state\_id]='\$\_POST[id]')}\}
 $$
-### DRC
+**DRC**
 $$
 \{<\text{id,n,si}>|
 <\text{id,n,si}> \in \text{cities} \land
@@ -939,12 +939,12 @@ ON job\_post
 WHERE id\_jobpost='\$\_GET[id]';
 ```
 
-### RA 
+**RA** 
 $$
 \sigma_\text{id\_jobpost='\$\_GET[id]'}
 \text{(job\_post} \bowtie \text{company)}
 $$
-### TRC
+**TRC**
 $$
 \{\text{t}| \exists \text{j} \in \text{job\_post(}
 \text{t[id\_jobpost]=j[id\_jobpost]} \land
@@ -973,7 +973,7 @@ $$
 \text{t[createdAt]=c[createdAt]} \land
 \text{t[active]=c[active]))}\}
 $$
-### DRC
+**DRC**
 $$
 \{<\text{ij,ic,jt,desc,mins,max,ex,q,crd,n,cn,c,st,ci,co,w,e,p,a,l,cd,ac}>| \\
 <\text{ij,ic,jt,desc,mins,max,ex,q,crd}> \in \text{job\_post} \land \\
