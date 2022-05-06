@@ -32,17 +32,20 @@ The code and the documentation for this project is available on this [Github Rep
 - [x] Domain Relational Calculus
 - [x] Normalization (1NF, 2NF, 3NF)
 - [x] mySQL
+  - [x] Queries
+  - [x] Subqueries
+  - [x] Joins
+  - [x] Functions
+  - [x] Procedures
+  - [x] Triggers
+
 - [x] GUI implementation
 
 # Acknowledgement
 
-Firstly, we would like to thank our family and friends for their constant support.
+Firstly, we would like to thank our family and friends for their constant support. Secondly, we would like to express my sincere gratitude to all Department of Computer Science Professors for allowing us to apply my expertise in this assignment.
 
-Secondly, we would like to express my sincere gratitude to all Department of Computer Science Professors for allowing us to apply my expertise in this assignment.
-
-Our humble and noteworthy appreciation is due to Ms. Sapna Sadhwani, Dr. Tamizharasan Periyaswamy and Dr. Pramod Gaur for their guidance and assistance in the completion of this assignment.
-
-We are also grateful to all the Department of Computer Science faculty for giving us the required knowledge to program using the mySQL querying language to implement our ideas for this project.
+Our humble and noteworthy appreciation is due to Ms. Sapna Sadhwani, Dr. Tamizharasan Periyaswamy and Dr. Pramod Gaur for their guidance and assistance in the completion of this assignment. We are also grateful to all the Department of Computer Science faculty for giving us the required knowledge to program using the mySQL querying language to implement our ideas for this project.
 
 [toc]
 
@@ -133,8 +136,8 @@ A diagrammatic representation of the entities and relations used.
 | Underline        | Primary Key Attribute                                        |
 | Triangle         | ‘is-a’ relation                                              |
 | Lines            | - Link attribute **to** entity set<br />- Link entity set **to** relationship set |
-| $\to$            | **to** one                                                   |
-| $-$              | **to** many                                                  |
+| $\to$            | one                                                          |
+| $-$              | many                                                         |
 
 ### Relational Model
 
@@ -168,7 +171,9 @@ It is the process of structuring a database, usually a relational database, in a
 | mySQL     | My Structured Query Language                | Structured Relational Database Querying Language             |
 | Xampp     | cross-platform, Apache, MySQL, PHP and Perl | - Database manipulation<br />- Locally hosting the website   |
 
-# Limitations
+## Limitations
+
+The following are the drawbacks of our project. We plan on addressing these issues in the future.
 
 1. Dynamic Sites are not as performant as static sites
 2. Filters are not dynamic currently (it is hard-coded)
@@ -179,7 +184,7 @@ It is the process of structuring a database, usually a relational database, in a
 
 # ER Diagram
 
-![](assets/er.svg)
+<img src="assets/er.svg" class="full" />
 
 # Normalization
 
@@ -277,17 +282,19 @@ R10(id_user, firstname, lastname, email, password, address, city, state, contact
 
 # Schema Diagram
 
-![](assets/schema.svg)
+<img src="assets/schema.svg" class="full" />
 
 # Design
 
 |                Table                | Details                                                      |
 | :---------------------------------: | ------------------------------------------------------------ |
 |               `admin`               | - admin username<br />- admin password<br />- Holds details about the active companies registered, candidates registered, total job posts and total applications.<br />- Permissions to remove any user or candidate<br />- Any company before being able to recruit and post jobs must be verified by the admin. |
+|          `job_post table`           | - details of jobs posted by a company.<br />- contains the id of the company which posted the job, the job title and desription.<br/>- contains minimum salary , maximum salary, and qualifications for filtering out candidates.<br />- `createdat` attribute is used for showcasing the latest 4 jobs in the home page. |
 |          `apply_job_post`           | Id_apply: acts as primary key with auto increment on<br/>Id_job_post: acts as the id for the GET method of php for opening the specific webpage having job<br/>decription<br/>Id company/user : id of user or the company<br/>Status: status of the job post depending on the admin. A job post is published only after validation by the admin. |
 | `City`<br />`state`<br /> `country` | - Large database of the cities, states and tables connected together by id of state and<br/>countries.<br />- Created separately since while creating forms the option to select country comes first, then the state and then the city.<br />- None of these are compulsory so the 3 tables are kept separately so that if a user only provides country or country-state it works as well. |
 |              `Company`              | - Consists of all the details of the country. The logo is stored as image format in the uploads folder.<br />- Any company before being to operate must be able to be verified from the admin when their active column changes from 2 to 1. |
 |               `Users`               | - Similar to the companies these include all the users looking for jobs.<br />- The resume is stored as pdf(size smaller than 5 mb) and is stored in the uploads folder.<br />- The passwords are stored after applying decoding so that even the admin or the superuser can’t access the password. |
+|               `Logs`                | - contains the log of user activity<br />- updated with the activity of user whenever a new user is created, updated or deleted. |
 |       `Mailbox`<br />`Reply`        | - Inbuilt mailing technique b/w the users and the companies, the user can have converstion with the employee who have interest in their application.<br />- The design is similar to Gmail<br />- all the information is stored in the sql file i.e. the message, from, to and the date. |
 # Implementation
 
@@ -314,7 +321,7 @@ $result = $conn->query($sql);
 |        `login`<br />`signup`<br />`register`        | - These are the pages which open the login and signup pages.<br />- The details of username and password are checked using the `checklogin.php` and `checkcompanylogin.php`.<br />- All the login and register pages have the standard php code for validation of phone number, email id, pdf size etc.<br />- These can be seen at W3Schools itself. |
 | Folders of<br /> `user`<br />`company`<br />`admin` | - These contain the php pages to be loaded when the corresponding people are logged in.<br />- This is known by using the session global variable of php to know which of these is set.<br />- The php files within are pretty simple to those mentioned above with the exception that these are a little more specified for the particular kind of user. |
 
-## Queries
+## Inbuilt Queries
 
 ### `addcompany.php`
 
@@ -460,9 +467,550 @@ Similar queries in the user, company and admin php files for the specific user t
 
 ![14_Company_List_Admin_Panel](assets/Screenshots/14_Company_List_Admin_Panel.png)
 
-# Extra Queries
+# Other Queries
 
+## Retrieve company number from name 
 
+```mysql
+delimiter //
+create function contact_from_company(input_companyname varchar(255))
+returns varchar(255)
+begin
+	return (select contactno
+		from company
+		where company.companyname= input_companyname);
+end //
+delimiter ;
+
+select * from contact_from_company(*some company name*);
+```
+
+### RA
+$$
+\pi_\text{contactno} \text{(}
+\sigma_\text{companyname='companyname'}
+\text{(company))}
+$$
+### TRC
+$$
+\{\text{t}| \exists \text{c} \in \text{company(}
+\text{t[contactno]=c[contactno]} \land
+\text{c[companyname]='companyname')}\}
+$$
+### DRC
+$$
+\{<\text{co}>|
+\exists \text{ic,n,cn,c,st,ci,w,e,p,a,l,cd,ac(}
+<\text{ic,n,cn,c,st,ci,co,w,e,p,a,l,cd,ac}> \in \text{company} \land
+\text{cn='companyname')}\}
+$$
+
+## Retrieve qualifying jobs
+
+```mysql
+delimiter //
+create procedure job_from_qualification(input_id_user int(11))
+begin
+select companyname, jobtitle, description, minimumsalary, maximumsalary, experience
+from users
+where users.id_user=input_id_user
+inner join job_post
+on users.qualification=job_post.qualification;
+end //
+delimiter ;
+
+call job_from_qualification(*some userid*);
+```
+
+### RA
+$$
+\pi_\text{jobtitle,description,minimumsalary,maximumsalary,experience} \text{(}
+\sigma_\text{id\_user='userid'}
+\text{(users} \bowtie \text{job\_post))}
+$$
+### TRC
+$$
+\{\text{t} | \exists \text{u}\in \text{users(}
+\text{u[id\_user]='userid'} \land
+\exists \text{j}\in \text{job\_post(} \\
+\text{t[jobtitle]=j[jobtitle]} \land
+\text{t[description]=j[description]} \land \\
+\text{t[minimumsalary]=j[minimumsalary]} \land
+\text{t[maximumsalary]=j[maximumsalary]} \land \\
+\text{t[experience]=j[experience]} \land
+\text{u[qualification]=j[qualification]))}\}
+$$
+### DRC
+$$
+\{<\text{jt,desc,mins,maxs,ex}>|
+\exists \text{iu,fn,ln,em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk(} \\
+<\text{iu,fn,ln,em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk}>\in \text{users} \land
+\text{iu='userid'} \land \\
+\exists \text{ij,ic,crd(}
+<\text{ij,ic,jt,desc,mins,maxs,ex,crd}>\in \text{job\_post))}\}
+$$
+
+## Retrieve jobs in a city
+
+```mysql
+SELECT j.companyname, j.jobtitle, j,description, j.minimumsalary, j.maximumsalary, j.experience
+FROM job_post as j, (SELECT id_jobpost, city
+				FROM job\_post, company
+				WHERE job\_post.id\_company= company.id\_company) as c
+WHERE j.id_jobpost=c.id_jobpost AND c.city='city';
+```
+
+### RA
+$$
+\pi_\text{companyname,jobtitle,description,minimumsalary,maximumsalary,experience} \text{(}
+\sigma_\text{city='city'}
+\text{(job\_post}\bowtie \text{company))}
+$$
+### TRC
+$$
+\{\text{t} | \exists \text{j} \in \text{job\_post(}
+\text{t[jobtitle]=j[jobtitle]} \land \text{t[description]=j[description]} \land \\
+\text{t[minimumsalary]=j[minimumsalary]} \land \text{t[maximumsalary]=j[maximumsalary]} \land
+\text{t[experience]=j[experience]} \land \\
+\exists \text{c}\in \text{company(}
+\text{j[id\_company]=c[id\_company]} \land
+\text{c[city]='city'))}\}
+$$
+### DRC
+$$
+\{<\text{cn,jt,desc,mins,maxs,ex}>|
+\exists \text{ij,ic,q,crd(}
+<\text{ij,ic,jt,desc,mins,maxs,ex,crd}> \in \text{job\_post} \land \\
+\exists \text{n,c,st,ci,co,w,e,p,ab,l,cd,a(}
+<\text{ic,n,cn,c,s,ci,co,w,e,p,a,l,cd,ac}>\in \text{company} \land
+\text{ci='city'))}\}
+$$
+
+## Retrieve user details if applied to a certain job
+
+```mysql
+delimiter //
+create procedure resume_from_apply_jobpost(input_id_jobpost int(11))
+begin
+select id_user, email, resume
+from users, apply_job_post
+where apply_job_post.id_jobpost =input_id_jobpost and
+apply_jobpost.id_user = users.id_user;
+end //
+delimiter ;
+
+select * from resume_from_apply_jobpost(*some id_jobpost*);
+```
+
+### RA
+$$
+\pi_\text{id\_user, email, resume} \text{(}
+\sigma_\text{id\_jobpost='jobpostid'}
+\text{(users} \bowtie \text{apply\_job\_post))}
+$$
+### TRC
+$$
+\{\text{t}|\exists \text{u} \in \text{users(}
+\text{t[id\_user]=u[id\_user]} \land \\
+\text{t[email]=u[email]} \land
+\text{t[resume]=u[resume]} \land \\
+\exists \text{aj} \in \text{apply\_job\_post(}
+\text{aj[id\_jobpost]='jobpostid'} \land
+\text{u[id\_user]=aj[id\_user]))}\}
+$$
+### DRC
+$$
+\{<\text{iu,em,res}>|
+\exists \text{fn,ln,pa,ad,ci,st,con,q,s,py,dob,age,desg,h,act,abt,sk(} \\
+<\text{iu,fn,ln,em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk}>\in \text{users} \land \\
+\exists \text{ia,ij,ic,stat(}
+<\text{ia,ij,ic,iu,stat}> \in \text{apply\_job\_post} \land
+\text{ij='jobpostid'))}\}
+$$
+
+## Retrieve qualified jobs greater than some salary
+
+```mysql
+delimiter //
+create procedure job_from_minimumsalary(input_id_user int(11), input_minimumsalary varchar(255))
+begin
+select companyname, jobtitle, description, minimumsalary, maximumsalary, experience
+from users
+where users.id_user=input_id_user
+inner join job_post
+on users.qualification=job_post.qualification and job_post.maximumsalary>input_minimumsalary;
+end //
+delimiter ;
+
+call job_from_minimumsalary(*some user_id*, *some minimumsalary*);
+```
+
+### RA
+$$
+\pi_\text{jobtitle,description,minimumsalary,maximumsalary,experience} \text{(} \\
+\sigma_{\text{id\_user='userid'} \land
+\text{maximumsalary}>\text{'minimumsalary'}}
+\text{(users} \bowtie \text{job\_post))}
+$$
+### TRC
+$$
+\{\text{t} | \exists \text{u} \in \text{users(}
+\text{u[id\_user]='userid'} \land
+\exists \text{j} \in \text{job\_post(}
+\\
+\text{t[jobtitle]=j[jobtitle]} \land
+\text{t[description]=j[description]} \land
+\\
+\text{t[minimumsalary]=j[minimumsalary]} \land
+\text{t[maximumsalary]=j[maximumsalary]} \land 
+\\
+\text{t[experience]=j[experience]} \land
+\text{u[qualification]=j[qualification]} \land
+\\
+\text{j[maximumsalary]>'minimumsalary'))}\}
+$$
+### DRC
+$$
+\{<\text{jt,desc,mins,maxs,ex}>|
+\exists \text{iu,fn,ln,em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk(} \\
+<\text{iu,fn,ln,em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk}> \in \text{users} \land
+\text{iu='userid'} \land \\
+\exists \text{ij,ic,crd(}
+<\text{ij,ic,jt,desc,mins,maxs,ex,crd}> \in \text{job\_post} \land
+\text{maxs>'minimumsalary'))}\}
+$$
+
+## Retrieve users with applications sent out
+
+```mysql
+SELECT id_user,firstname,lastname
+FROM users
+WHERE id_user IN (SELECT id_user FROM apply_job_post);
+```
+
+### RA
+$$
+\pi_\text{id\_user,firstname,lastname}
+\text{(users} \bowtie \text{apply\_job\_post)}
+$$
+### TRC
+$$
+\{\text{t}| \exists \text{u} \in \text{users(}
+\text{t[id\_user]=u[id\_user]} \land
+\text{t[firstname]=u[firstname]} \land \\
+\text{t[lastname]=u[lastname]} \land
+\exists \text{aj} \in \text{apply\_job\_post(}
+\text{u[id\_user]=aj[id\_user]))}\}
+$$
+### DRC
+$$
+\{<\text{iu,fn,ln}>|
+\exists \text{em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk(} \\
+<\text{iu,fn,ln,em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk}>\in \text{users} \land \\
+\exists \text{ia,ij,ic,stat(}
+<\text{ia,ij,ic,iu,stat}> \in \text{apply\_job\_post))}\}
+$$
+
+## Retrieve cities with jobs available
+
+```mysql
+SELECT city
+FROM company
+WHERE company.id_company IN (SELECT id_company FROM job_post);
+```
+
+### RA
+$$
+\pi_\text{city}
+\text{(company} \bowtie \text{job\_post)}
+$$
+### TRC
+$$
+\{\text{t}| \exists \text{c} \in \text{company(}
+\text{t[city]=c[city]} \land
+\exists \text{j} \in \text{job\_post(}
+\text{c[id\_company]=j[id\_company]))}\}
+$$
+### DRC
+$$
+\{<ci>|
+\exists \text{ic,n,cn,c,st,co,w,e,p,a,l,cd,ac(} \\
+<\text{ic,n,cn,c,st,ci,co,w,e,p,a,l,cd,ac}> \in \text{company} \land \\
+\exists \text{ij,jt,desc,mins,maxs,ex,crd(}
+<\text{ij,ic,jt,desc,mins,maxs,ex,crd}> \in \text{job\_post))}\}
+$$
+
+## Check if company email exists
+
+```mysql
+SELECT email 
+FROM company 
+WHERE email ='\$email';
+```
+
+### RA
+
+$$
+\pi_\text{email} \text{(}
+\sigma_\text{email='\$email'}
+\text{(company)})
+$$
+
+### TRC
+$$
+\{\text{t}|\exists \text{c} \in \text{company(}
+\text{t[email]=c[email]} \land
+\text{c[email]='\$email')}\}
+$$
+### DRC
+$$
+\{<e>|
+\exists \text{ic,n,cn,c,st,ci,co,w,p,a,l,cd,ac(}
+<\text{ic,n,cn,c,st,ci,co,w,e,p,a,l,cd,ac}> \in \text{company} \land
+\text{e='\$email')}\}
+$$
+
+## Check if user email exists
+
+```mysql
+SELECT email
+FROM users
+WHERE email ='\$email';
+```
+
+### RA
+$$
+\pi_\text{email} \text{(}
+\sigma_\text{email='\$email'}
+\text{(users))}
+$$
+### TRC
+$$
+\{\text{t}| \exists \text{u} \in \text{users(}
+\text{t[email]=u[email]} \land
+\text{u[email]='\$email')}\}
+$$
+### DRC
+$$
+\{<em>|
+\exists \text{iu,fn,ln,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk(} \\
+<\text{iu,fn,ln,em,pa,ad,ci,st,con,q,s,py,dob,age,desg,res,h,act,abt,sk}> \in \text{users} \\
+\land \text{em='email')}\}
+$$
+
+## Retrieve jobpost details from matching jobpost
+
+```mysql
+SELECT *
+FROM job_post
+WHERE id_jobpost ='$_GETid]';
+```
+
+### RA
+$$
+\sigma_\text{id\_jobpost='\$\_{GET[id]}}
+\text{(job\_post)}
+$$
+
+### TRC
+$$
+\{\text{t}| \exists \text{j} \in \text{job\_post(}
+\text{t[id\_jobpost]=j[id\_jobpost]} \land
+\text{t[id\_company]=j[id\_company]} \land \\
+\text{t[jobtitle]=j[jobtitle]} \land
+\text{t[description]=j[description]} \land
+\text{t[minimumsalary]=j[minimumsalary]} \land \\
+\text{t[maximumsalary]=j[maximum salary]} \land
+\text{t[experience]=j[experience]} \land \\
+\text{t[qualification]=j[qualification]} \land 
+\text{t[createdat]=j[createdat]} \land
+\text{j[id\_jobpost]='\$\_GET[id]')}\}
+$$
+
+### DRC
+
+$$
+\{<\text{ij,ic,jt,desc,mins,max,ex,q,crd}>|
+<\text{ij,ic,jt,desc,mins,max,ex,q,crd}> \in \text{job\_post} \\
+\land \text{ij='\$\_GET[id]'}\}
+$$
+## Retrieve company details
+
+```mysql
+SELECT id\_company,companyname,email,active
+FROM company
+WHERE email='\$email' AND password='\$password';
+```
+
+### RA
+$$
+\pi_\text{id\_company,companyname,email,active} \text{(}
+\sigma_{\text{email='\$email'} \land
+\text{password ='\$password'}}
+\text{(company))}
+$$
+### TRC
+$$
+\{t| \exists \text{c} \in \text{company(}
+\text{t[id\_company]=c[id\_company]} \land \\
+\text{t[companyname]=c[companyname]} \land
+\text{t[email]=c[email]} \land \\
+\text{t[active]=c[active]} \land
+\text{c[email]='\$email')}\}
+$$
+### DRC
+$$
+\{<\text{ic,cn,e,ac}>|
+\exists \text{n,c,st,ci,co,w,p,a,l,cd(} \\
+<\text{ic,n,cn,c,st,ci,co,w,e,p,a,l,cd,ac}> \in \text{company}
+\\ \land
+\text{p='\$password'} \land
+\text{e='\$email')}\}
+$$
+
+## Retrieve applications that user has applied for
+
+```mysql
+SELECT *
+FROM apply\_job\_post
+WHERE id\_user=‘\$\_SESSION[id\_user]' AND id\_jobpost='\$row[id\_jobpost]';
+```
+
+### RA
+$$
+\sigma_{\text{id\_user=‘\$\_SESSION[id\_user]'} \land
+\text{id\_jobpost='\$row[id\_jobpost]'}}
+\text{(apply\_job\_post)}
+$$
+### TRC
+$$
+\{\text{t}| \exists \text{aj} \in \text{apply\_job\_post(}
+\text{t[id\_apply]=aj[id\_apply]} \land
+\text{t[id\_jobpost]=aj[id\_jobpost]} \land \\
+\text{t[id\_company]=aj[id\_company]} \land
+\text{t[id\_user]=c[id\_user]} \land
+\text{t[status]=aj[status]} \land \\
+\text{aj[id\_user]='\$\_SESSION[id\_user]} \land
+\text{id\_jobpost='\$row[id\_jobpost])}\}
+$$
+### DRC
+$$
+\{<\text{ia,ij,ic,iu,stat}>|
+<\text{ia,ij,ic,iu,stat}> \in \text{apply\_job\_post} \land \\
+\text{iu=‘\$\_SESSION[id\_user]'} \land
+\text{ij='\$row[id\_jobpost]'}\}
+$$
+
+## Retrieve cities in a state
+
+```mysql
+SELECT *
+FROM cities
+WHERE state\_id ="\$\_POST[id]";
+```
+
+### RA
+$$
+\sigma_\text{state\_id ='\$\_POST[id]}
+\text{(cities)}
+$$
+
+### TRC
+$$
+\{\text{t}| \exists \text{ci} \in \text{cities(}
+\text{t[id]=ci[id]} \land
+\text{t[name]=ci[name]} \land \\
+\text{t[state\_id]=ci[state\_id]} \land
+\text{c[state\_id]='\$\_POST[id]')}\}
+$$
+### DRC
+$$
+\{<\text{id,n,si}>|
+<\text{id,n,si}> \in \text{cities} \land
+\text{si=‘\$\_POST[id]}\}
+$$
+
+## Retrieve certain jobpost and their company details
+
+```mysql
+SELECT * job\_post
+INNER JOIN company
+ON job\_post
+WHERE id\_jobpost='\$\_GET[id]';
+```
+
+### RA 
+$$
+\sigma_\text{id\_jobpost='\$\_GET[id]'}
+\text{(job\_post} \bowtie \text{company)}
+$$
+### TRC
+$$
+\{\text{t}| \exists \text{j} \in \text{job\_post(}
+\text{t[id\_jobpost]=j[id\_jobpost]} \land
+\text{t[id\_company]=j[id\_company]} \land \\
+\text{t[jobtitle]=j[jobtitle]} \land
+\text{t[description]=j[description]} \land \\
+\text{t[minimumsalary]=j[minimumsalary]} \land
+\text{t[maximumsalary]=j[maximumsalary]} \land \\
+\text{t[experience]=j[experience]} \land
+\text{t[qualification]=j[qualification]} \land \\
+\text{t[createdat]=j[createdat]} \land
+\text{j[id\_jobpost]='\$\_GET[id]'} \land \\
+\exists \text{c} \in \text{company(}
+\text{t[id\_company]=c[id\_company]} \land \\
+\text{t[name]=c[name]} \land
+\text{t[companyname]=c[companyname]} \land \\
+\text{t[country]=c[country]} \land
+\text{t[state]=c[state]} \land \\
+\text{t[city]=c[city]} \land
+\text{t[contactno]=c[contactno]} \land \\
+\text{t[website]=c[website]} \land
+\text{t[email]=c[email]} \land \\
+\text{t[password]=c[password]} \land
+\text{t[aboutme]=c[aboutme]} \land \\
+\text{t[logo]=c[logo]} \land
+\text{t[createdAt]=c[createdAt]} \land
+\text{t[active]=c[active]))}\}
+$$
+### DRC
+$$
+\{<\text{ij,ic,jt,desc,mins,max,ex,q,crd,n,cn,c,st,ci,co,w,e,p,a,l,cd,ac}>| \\
+<\text{ij,ic,jt,desc,mins,max,ex,q,crd}> \in \text{job\_post} \land \\
+<\text{ic,n,cn,c,st,ci,co,w,e,p,a,l,cd,ac}> \in \text{company} \land
+\text{ij='\$\_GET[id]'}\}
+$$
+
+## Triggers
+
+The following are the triggers used for this project. Note that: Since the `id` uses auto incremented, we do not need to explicitly specify an ID, so we write `null` instead.
+
+Add inserted to the logs when a new user is created.
+
+```mysql
+CREATE TRIGGER 'insertLog'
+AFTER INSERT ON 'users'
+FOR EACH ROW
+INSERT INTO logs VALUES(null, NEW.id_user, "Inserted" , NOW())
+```
+
+Add updated to the logs when a user’s detail(s) are updated
+
+```mysql
+CREATE TRIGGER 'updateLog'
+AFTER UPDATE ON 'users'
+FOR EACH ROW
+INSERT INTO logs VALUES(null, NEW.id_user, "Updated" , NOW())
+```
+
+Add deleted to the logs when a user is deleted
+
+```mysql
+CREATE TRIGGER 'deleteLog'
+AFTER DELETE ON 'users'
+FOR EACH ROW
+INSERT INTO logs VALUES(null, OLD.id_user, "Deleted" , NOW())
+```
 
 # Usage
 
@@ -495,3 +1043,26 @@ The following are the steps to run this project yourself
 | Candidate | m@m.com  |    m     |
 |  Company  | m@m.com  |    m     |
 
+# References
+
+[1] “Need for DBMS,” GeeksforGeeks, Aug. 23, 2016. https://www.geeksforgeeks.org/need-for-dbms/ (accessed May 02, 2022).
+
+[2] “Schema Integration in DBMS,” GeeksforGeeks, Oct. 11, 2018. https://www.geeksforgeeks.org/schema-integration-in-dbms/ (accessed May 01, 2022).
+
+[3] “Normal Forms in DBMS,” GeeksforGeeks, Jul. 08, 2015. https://www.geeksforgeeks.org/normal-forms-in-dbms/ (accessed May 01, 2022).
+
+[4] F. Nelson, Job-Portal. 2021. Accessed: Apr. 08, 2022. [Online]. Available: https://github.com/fulfilen/job-portal
+
+[5] “Introduction of ER Model,” GeeksforGeeks, Oct. 13, 2015. https://www.geeksforgeeks.org/introduction-of-er-model/ (accessed Apr. 28, 2022).
+
+[6] “Relational Model in DBMS,” GeeksforGeeks, Oct. 27, 2015. https://www.geeksforgeeks.org/relational-model-in-dbms/ (accessed Apr. 21, 2022).
+
+[7] “Introduction of Relational Algebra in DBMS,” GeeksforGeeks, Jul. 02, 2015. https://www.geeksforgeeks.org/introduction-of-relational-algebra-in-dbms/ (accessed Apr. 21, 2022).
+
+[8] “Functional Dependency and Attribute Closure,” GeeksforGeeks, Dec. 23, 2016. https://www.geeksforgeeks.org/functional-dependency-and-attribute-closure/ (accessed Apr. 22, 2022).
+
+[9] “ACID Properties in DBMS,” GeeksforGeeks, Aug. 07, 2016. https://www.geeksforgeeks.org/acid-properties-in-dbms/ (accessed Apr. 25, 2022).
+
+[10] “Concurrency Control in DBMS,” GeeksforGeeks, Dec. 29, 2015. https://www.geeksforgeeks.org/concurrency-control-in-dbms/ (accessed Apr. 26, 2022).
+
+[11] “Database Management System (DBMS),” GeeksforGeeks. https://www.geeksforgeeks.org/dbms/ (accessed Apr. 22, 2022).
